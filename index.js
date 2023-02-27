@@ -97,6 +97,7 @@ inquirer
     },
   ])
   .then(answers => {
-    console.info('Answer:', answers.faveReptile);
+    const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNum);
+    const team = [manager];
   });
 
