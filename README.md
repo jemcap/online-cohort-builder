@@ -1,99 +1,51 @@
-# online-cohort-builder
+# <h1 align="center">**✨ Online Cohort Builder ✨**</h1>
 
-===========================================================================
+![License](https://img.shields.io/badge/license-MIT-green)
 
-# Module 12 Object-Oriented Programming: Team Profile Generator
+<hr/>
+<hr/>
 
-## Your Task
+## 📝 **Description**
+This application is a CLI-based online cohort generator. The generator supposedly is purposed to create a roster much more conveniently saving time and effort. This project practices heavily on Test-Driven Development (TDD) and advanced ES6 / Node.js functions.
 
-Your task is to take the given starter code and convert it into a working Node.js command-line application. This application will take in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. You have been provided with tests, so make sure every part of your code passes each provided test.
+<hr/>
 
-## User Story
+## **Demo**
+![Image](assets/roster-demo.png)
 
-As a manager a user want to generate a webpage that displays my team's basic info so that a user have quick access to their emails and GitHub profiles.
 
-## Instructions
+<hr/>
 
-* Create a command-line application that accepts accepts user input using the provided starter code.   
-  * Create classes for each team member provided and export them. The tests for these classes (in the `_tests_` directory) must ALL pass.     
-    * The first class is an `Employee` parent class with the following properties and methods:       
-      * `name`
-      * `id`
-      * `email`
-      * `getName()`
-      * `getId()`
-      * `getEmail()`
-      * `getRole()`&mdash;returns `'Employee'`     
-    * The other three classes will extend `Employee`.      
-    * In addition to `Employee`'s properties and methods, `Manager` will also have the following:
-      * `officeNumber`
-      * `getRole()`&mdash;overridden to return `'Manager'`
-    * In addition to `Employee`'s properties and methods, `Engineer` will also have the following:
-      * `github`&mdash;GitHub username
-      * `getGithub()`
-      * `getRole()`&mdash;overridden to return `'Engineer'`
-    * In addition to `Employee`'s properties and methods, `Intern` will also have the following:
-      * `school`
-      * `getSchool()`
-      * `getRole()`&mdash;overridden to return `'Intern'`
-    * Finally, although it’s not a requirement, consider adding validation to ensure that user input is in the proper format.   
-  * Write code in `index.js` that uses inquirer to gather information about the development team members and creates objects for each team member using the correct classes as blueprints.
-    * When a user starts the application then they are prompted to enter the **team manager**’s:
-      * Name
-      * Employee ID
-      * Email address
-      * Office number
-    * When a user enters those requirements then the user is presented with a menu with the option to:
-      * Add an engineer
-      * Add an intern 
-      * Finish building the team
-    * When a user selects the **engineer** option then a user is prompted to enter the following and then the user is taken back to the menu:
-      * Engineer's Name
-      * ID
-      * Email
-      * GitHub username
-    * When a user selects the intern option then a user is prompted to enter the following and then the user is taken back to the menu:
-      * Intern’s name
-      * ID
-      * Email
-      * School
-    * When a user decides to finish building their team then they exit the application, and the HTML is generated.
-  * Call the `render` function (provided for you) and pass in an array containing all employee objects; 
-    * The `render` function will generate and return a block of HTML including templated divs for each employee!
-  * Create an HTML file using the HTML returned from the `render` function. 
-    * Write it to a file named `team.html` in the `output` folder. 
-    * You can use the provided variable `outputPath` to target this location.
+## 🗂️ **Table of Contents**
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [License](#license)
+4. [Questions](#questions)
 
----
+<hr/>
 
-## Mock-Up
+## 💻 **Installation** <a name="#installation"></a>
+Initialise node by running in your terminal of choice `npm init -y`. Install `Node.js` and `npm`, to your local machine by running `node install -y`, to fully experience this application. Using `npm`, install the `inquirer` package by entering into the terminal: `npm i inquirer@ 6.3.1`.
 
-The following image shows a mock-up of the generated HTML’s appearance and functionality:
+Tests can be done by firstly installing jest on your local machine by `npm install jest`.
 
-![HTML webpage titled “My Team” features five boxes listing employee names, titles, and other key info.](./Assets/14-object-oriented-programming-challenge-demo.png)
+<hr/>
 
-The styling in the image is just an example, so feel free to add your own.
+## 🚀 **Usage** <a name="#usage"></a>
+First, `fork` the repository into your personal GitHub workspace and `clone` the project — this is so that you have your own personal copy of the application. Open the application to explore the project files if you wish. To start the application, open a `terminal` and locate to the `root` directory. Then, type `node index js`. A series of prompts will appear instantly to allow you to enter data in. Upon success, a html file named `team.html` will be created, and updated with every iteration.
 
----
+Navigate to the file under the `output` directory and open the newly generated html file via `Open with Live Server` to view the application.
 
-## Getting Started
+<hr/>
 
-This Challenge will combine many of the skills we've covered so far. In addition to the User Story and Acceptance Criteria, we’ve provided some guidelines to help get started.
+## 🪪 **License** <a name="#license"></a>
+![License](https://img.shields.io/badge/license-MIT-green) — (<Project-Title> is covered under MIT License.)
 
-Your application should use [Jest](https://www.npmjs.com/package/jest) for running the unit tests and [Inquirer](https://www.npmjs.com/package/inquirer) for collecting input from the user. The application will be invoked by using the following command:
+<hr/>
 
-```bash
-node index.js
-```
-
----
-
-## Hints
-
-* You will want to make your methods as pure as possible. This means try to make your methods simple so that they are easier to test.
-
-* The different employee types should all inherit some methods and properties from a base class of `Employee`.
- 
-* Be sure to test out each class and verify it generates an object with the correct structure and methods. This structure will be crucial in order for the provided `render` function to work!
-  
-* You may need to check if the `output` folder exists and create it if it does not.
+## ❔ **Questions** <a name="questions"></a>
+Any queries about this project, please feel welcome to reach out to me using the following credentials:
+<h3>Josh Capito</h3>
+- Github: <a href="https://github.com/jemcap">Josh Capito</a>
+<br />
+- Email: <a href="mailto:joshuaecapito22@gmail.com">joshuaecapito22@gmail.com</a>

@@ -36,16 +36,6 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-// * Create a command-line application that accepts accepts user input using the provided starter code.
-// Use Inquirer to prompt users a series of the following questions.
-// name
-// role
-// Id
-// Email
-// Office Number
-// Github
-// School
-
 // * When a user starts the application then they are prompted to enter the **team manager**’s:
 //   * Name
 //   * Employee ID
@@ -71,14 +61,31 @@ inquirer
     {
       type: "input",
       name: "email",
+      validate: (email) => {
+        if (
+          /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
+            email
+          )
+        ) {
+          return true;
+        }
+        return "Please enter a valid email address";
+      },
       message: "What is the team manager's email address?",
     },
     {
       type: "input",
       name: "officeNumber",
+      validate: (answer) => {
+        if (isNaN(answer)) {
+          return "please enter a number";
+        }
+        return true;
+      },
       message: "What is the team manager's office number?",
     },
   ])
+  // Upon success, instantiate the manager with answers
   .then((answers) => {
     const manager = new Manager(
       answers.name,
@@ -91,7 +98,8 @@ inquirer
     promptEmployee();
   });
 
-// Prompt user to add another employee or finish building team
+// Takes the user back to the choices list after every prompt
+// Prompt user to add another employee or finish building the team
 function promptEmployee() {
   inquirer
     .prompt([
@@ -102,6 +110,7 @@ function promptEmployee() {
         choices: ["Engineer", "Intern", "Finish building team"],
       },
     ])
+    // A separate prompt for engineer
     .then((answers) => {
       if (answers.employeeType === "Engineer") {
         // Prompt user for information about an engineer
@@ -120,7 +129,17 @@ function promptEmployee() {
             {
               type: "input",
               name: "email",
-              message: "What is the engineer's email address?",
+              validate: (email) => {
+                if (
+                  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
+                    email
+                  )
+                ) {
+                  return true;
+                }
+                return "Please enter a valid email address";
+              },
+              message: "What is the team engineer's email address?",
             },
             {
               type: "input",
@@ -128,6 +147,7 @@ function promptEmployee() {
               message: "What is the engineer's GitHub username?",
             },
           ])
+          // Upon success, instantiate the engineer with answers
           .then((answers) => {
             const engineer = new Engineer(
               answers.name,
@@ -135,6 +155,7 @@ function promptEmployee() {
               answers.email,
               answers.github
             );
+            // Push the result of engineer to the employees array
             employees.push(engineer);
             // Call function to prompt user for more employees
             promptEmployee();
@@ -156,12 +177,23 @@ function promptEmployee() {
             {
               type: "input",
               name: "email",
+              validate: (email) => {
+                if (
+                  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
+                    email
+                  )
+                ) {
+                  return true;
+                }
+                return "Please enter a valid email address";
+              },
               message: "What is the intern's email address?",
             },
             {
               type: "input",
               name: "school",
-              message: "What is the intern's school?",
+              message:
+                "What school or institution has the intern been enrolled to?",
             },
           ])
           .then((answers) => {
@@ -175,7 +207,17 @@ function promptEmployee() {
             // Call function to prompt user for more employees
             promptEmployee();
           });
+      } else {
+        renderTeam();
       }
     });
-  console.log(employees);
+}
+
+function renderTeam() {
+  const html = render(employees);
+  // using fs.writeFile and passing outputPath to target the desired location and create the html file to outputPath
+  fs.writeFile(outputPath, html, (err) => {
+    if (err) throw err;
+    console.log("Team roster created successfully!");
+  });
 }
